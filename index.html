@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171717">
+  <title>KocsmaLista</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIINfQ3Ap5V2K7eYV8X5f7w6X6z5t1cY6fQ="
+        crossorigin="">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <h1>🍺 KocsmaLista</h1>
+    <p>Saját kocsma- és söröző adatbázis</p>
+  </div>
+  <button id="addBtn" class="primary">＋ Új kocsma</button>
+</header>
+
+<main>
+  <section class="controls">
+    <input id="search" type="search" placeholder="🔍 Keresés név vagy cím alapján...">
+    <select id="sort">
+      <option value="distance">Távolság szerint</option>
+      <option value="beerAsc">Sörár: olcsótól</option>
+      <option value="beerDesc">Sörár: drágától</option>
+      <option value="rating">Értékelés szerint</option>
+      <option value="name">Név szerint</option>
+    </select>
+    <button id="locationBtn">📍 Saját helyem</button>
+  </section>
+
+  <section class="layout">
+    <div id="map"></div>
+    <div>
+      <div id="status" class="status">Betöltés…</div>
+      <div id="list" class="list"></div>
+    </div>
+  </section>
+</main>
+
+<dialog id="placeDialog">
+  <form id="placeForm" method="dialog">
+    <div class="dialog-head">
+      <h2 id="dialogTitle">Új kocsma</h2>
+      <button type="button" id="closeDialog" class="icon">✕</button>
+    </div>
+
+    <input type="hidden" id="placeId">
+
+    <label>Név
+      <input id="name" required placeholder="Pl. Öreg Kocsma">
+    </label>
+
+    <label>Cím
+      <input id="address" placeholder="Cím">
+    </label>
+
+    <div class="two">
+      <label>Szélesség (latitude)
+        <input id="lat" type="number" step="any" required>
+      </label>
+      <label>Hosszúság (longitude)
+        <input id="lng" type="number" step="any" required>
+      </label>
+    </div>
+
+    <div class="two">
+      <label>Sör ára (Ft)
+        <input id="beerPrice" type="number" min="0" placeholder="850">
+      </label>
+      <label>Értékelés (0–5)
+        <input id="rating" type="number" min="0" max="5" step="0.1" placeholder="4.5">
+      </label>
+    </div>
+
+    <label>Menü / árak
+      <textarea id="menu" rows="5" placeholder="Csapolt sör 850 Ft&#10;Rövid 1000 Ft&#10;Pizza 2500 Ft"></textarea>
+    </label>
+
+    <label>Megjegyzés
+      <textarea id="notes" rows="3" placeholder="Terasz, biliárd, jó zene..."></textarea>
+    </label>
+
+    <label>Kép URL
+      <input id="image" type="url" placeholder="https://...">
+      <small>Az első verzióban egy nyilvános kép URL-je használható. A Supabase Storage bekötését a README ismerteti.</small>
+    </label>
+
+    <div class="dialog-actions">
+      <button type="button" id="deleteBtn" class="danger hidden">Törlés</button>
+      <span></span>
+      <button type="button" id="cancelBtn">Mégse</button>
+      <button type="submit" class="primary">Mentés</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+<script src="app.js"></script>
+</body>
+</html>

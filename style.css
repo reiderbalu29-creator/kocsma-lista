@@ -1,0 +1,133 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f4f4f5;
+  color: #18181b;
+}
+.topbar {
+  padding: 18px 22px;
+  background: #18181b;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  align-items: center;
+}
+.topbar h1 { margin: 0; font-size: 1.5rem; }
+.topbar p { margin: 4px 0 0; opacity: .7; }
+main { max-width: 1400px; margin: auto; padding: 18px; }
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 230px auto;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+input, select, textarea, button {
+  font: inherit;
+}
+input, select, textarea {
+  width: 100%;
+  border: 1px solid #d4d4d8;
+  border-radius: 10px;
+  padding: 11px 12px;
+  background: white;
+}
+textarea { resize: vertical; }
+button {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 15px;
+  cursor: pointer;
+  background: #e4e4e7;
+}
+button:hover { filter: brightness(.96); }
+.primary { background: #18181b; color: white; }
+.danger { background: #dc2626; color: white; }
+.icon { padding: 5px 9px; }
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+  gap: 15px;
+}
+#map {
+  min-height: 650px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #ddd;
+}
+.list { display: grid; gap: 10px; }
+.status {
+  margin-bottom: 10px;
+  color: #52525b;
+  font-size: .9rem;
+}
+.card {
+  background: white;
+  border: 1px solid #e4e4e7;
+  border-radius: 14px;
+  padding: 12px;
+  display: grid;
+  grid-template-columns: 95px 1fr;
+  gap: 12px;
+  cursor: pointer;
+}
+.card:hover { border-color: #a1a1aa; }
+.card img {
+  width: 95px;
+  height: 95px;
+  border-radius: 10px;
+  object-fit: cover;
+  background: #e4e4e7;
+}
+.card h3 { margin: 0 0 5px; }
+.meta { color: #52525b; font-size: .9rem; line-height: 1.5; }
+.tags { margin-top: 6px; }
+.pill {
+  display: inline-block;
+  background: #f4f4f5;
+  border-radius: 999px;
+  padding: 3px 7px;
+  margin: 2px;
+  font-size: .75rem;
+}
+dialog {
+  border: 0;
+  border-radius: 16px;
+  padding: 0;
+  width: min(650px, calc(100% - 24px));
+  box-shadow: 0 20px 60px #0004;
+}
+dialog::backdrop { background: #0008; }
+#placeForm { padding: 20px; }
+.dialog-head, .dialog-actions {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+.dialog-actions {
+  grid-template-columns: auto 1fr auto auto;
+  margin-top: 18px;
+}
+label { display: block; margin-top: 12px; font-weight: 650; }
+label input, label textarea { margin-top: 5px; font-weight: 400; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+small { display: block; margin-top: 4px; color: #71717a; font-weight: 400; }
+.hidden { display: none; }
+.empty {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  color: #52525b;
+}
+@media (max-width: 850px) {
+  .controls { grid-template-columns: 1fr; }
+  .layout { grid-template-columns: 1fr; }
+  #map { min-height: 380px; }
+}
+@media (max-width: 500px) {
+  .topbar { align-items: flex-start; flex-direction: column; }
+  .topbar .primary { width: 100%; }
+  .two { grid-template-columns: 1fr; }
+}
